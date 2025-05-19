@@ -1,0 +1,31 @@
+{
+  "name": "namaste-react",
+  "version": "1.0.0",
+  "description": "This is react app",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dipika24baranwal/namaste-react.git"
+  },
+  "keywords": [],
+  "author": "Dipika Baranwal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dipika24baranwal/namaste-react/issues"
+  },
+  "homepage": "https://github.com/dipika24baranwal/namaste-react#readme",
+  "devDependencies": {
+    "parcel": "2.15.1"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "broswerslist": [
+    "last 5 version"
+  ]
+}
