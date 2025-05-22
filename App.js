@@ -1,20 +1,31 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const parent= React.createElement("div", {id:"parent"}, 
-    [React.createElement("div", {id:"child"}, 
-    React.createElement("h1", {id:"heading"}, "Hello World from React H1 tag!!!")
-  ),
-React.createElement("div", {id:"child2"},
-    [React.createElement("h1", {}, "Hello World from React H1 tag!!!"),
-        React.createElement("h2", {}, "Hello World from React H2 tag!!!")
-    ] 
-    
-  )]
-  
-);
+//React.createElement => React element -JS Object => HTMLElement(Render)
+const heading = React.createElement("h1",{"id":"heading"},"H1 Tag from react");
 
-//const heading = React.createElement("h1", {id:"heading"}, "Hello World from React App.js!!!");
-  const root = ReactDOM.createRoot(document.getElementById("root"));
-  //root.render(heading);
-  root.render(parent);
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+//JSX: HTML or XML like syntax
+//JSX => Transpile code from reaching to JS =>Is done by Parcel package Babel
+//JSX=> Babel transpile it to react.createElement => React element - JS Object => HTMLElement(Render)
+const jsxHeading= <h1 id="heading">H1 Tag from JSX</h1>;
+
+const HeadingComponent = () => {
+  return (
+  <div id="container">
+    <Title/>
+    {jsxHeading}
+    {Title()}
+    <Title> </Title>
+    <h1 className="heading">Hellow world from Functional Component!!!</h1>
+
+  </div>
+  )
+}
+
+const Title=() => <h1 id="heading">H1 Tag from Title</h1>;
+
+
+//root.render(jsxHeading)
+root.render(<HeadingComponent />)
