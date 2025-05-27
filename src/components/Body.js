@@ -39,7 +39,7 @@ let restaurantList2=[
 ]
 
 const Body = () => {
-  const [listOfRestaurant , setListOfRestaurant] = useState([restaurantList]);
+  const [listOfRestaurant , setListOfRestaurant] = useState(restaurantList);
   return (
     <div className="body">
       <div className="filter">
@@ -47,7 +47,7 @@ const Body = () => {
 onClick={() => {
   console.log("reslist::", restaurantList.length)
   console.log("listOfRestaurant::", listOfRestaurant.length)
- const filtertheRestaurant = restaurantList.filter((res) => { 
+ const filtertheRestaurant = listOfRestaurant.filter((res) => { 
   console.log("resLog::",listOfRestaurant)
   return (  res.data.avgRating > 4)});
  console.log("filteredData::", filtertheRestaurant)
@@ -60,7 +60,7 @@ onClick={() => {
 
       <div className="restaurant-container">
         {/* {resList.map(res=> <RestaurantCard key = {res.info.id} resData={res}/> )}  */}
-        {restaurantList.map(res=> <RestaurantCard key = {res.data.id} resData={res}/> )} 
+        {listOfRestaurant.map(res=> <RestaurantCard key = {res.data.id} resData={res}/> )} 
       </div>
     </div>
   );
