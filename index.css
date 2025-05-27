@@ -49,3 +49,8 @@ text-align: center;
 .search {
     padding: 25px;
 }
+
+.filer-btn {
+    margin: 25px;
+    cursor: pointer;
+}

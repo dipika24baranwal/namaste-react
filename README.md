@@ -20,4 +20,32 @@
     - Different dev and prod bundles
     
 
+# Restaurant
 
+ * -Header
+ *  -Logo
+ *  -Nav Menu
+ * -Body
+ *  -Search
+ *  -RestuarantContainer
+ *  -Restuarant Card
+ * -Footer
+ *  -Copyright
+ *  -Links
+ *  -Address
+ *  -Contact
+ 
+
+# type of Export/Import
+  -Default Export/Import
+   export default Component
+   import Component from "Path"
+
+  -Named Export/Import
+   export const Component
+   import {Component} from "Path"
+
+# React Hooks
+    {Normal JS utility function}
+    -useState : Superpowerful state variable of React
+    -useEffect : 
