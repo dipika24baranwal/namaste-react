@@ -1,66 +1,108 @@
 import RestaurantCard from "./RestaurantCard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import restaurantList from "../utils/mockData";
+import Shimmer from "./Shimmer";
 
-
-
-//const [restaurantList,setRestaurantList] = useState(resList);
-
-//let resList= resList;
-
-//console.log("resList::",resList.length)
-
-let restaurantList2=[
-    {
-        info: {
-        id: "150591",
+let restaurantList2 = [
+  {
+    info: {
+      id: "150591",
       name: "Satkar Restaurant",
       cloudinaryImageId: "rvxp5xbniat84r6efku2",
       avgRating: 3.8,
       sla: {
-        deliveryTime: 44
+        deliveryTime: 44,
+      },
+      costForTwo: "₹250 for two",
     },
-    costForTwo: "₹250 for two"
-    }
-    },
+  },
 
-    {
-        info: {
-        id: "150591",
+  {
+    info: {
+      id: "150591",
       name: "Meghana Restaurant",
       cloudinaryImageId: "rvxp5xbniat84r6efku2",
       avgRating: 4.4,
       sla: {
-        deliveryTime: 44
+        deliveryTime: 44,
+      },
+      costForTwo: "₹250 for two",
     },
-    costForTwo: "₹250 for two"
-    }
-} 
-]
+  },
+];
 
 const Body = () => {
-  const [listOfRestaurant , setListOfRestaurant] = useState(restaurantList);
-  return (
+  const [listOfRestaurant, setListOfRestaurant] = useState([]);
+  const [filteredListRestaurant, setFiltereListdRestaurant] = useState([]);
+  const [searchText, setSearchText] = useState("");
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9698196&lng=77.7499721&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      //"https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    ); //("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING")
+
+    const jsonData = await data.json();
+    console.log(
+      "jsondData::",
+      jsonData.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+    );
+    setListOfRestaurant(
+      jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
+
+    setFiltereListdRestaurant(
+      jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
+  };
+
+  //console.log("body render::", searchText)
+
+  return listOfRestaurant.length === 0 ? (
+    <Shimmer />
+  ) : (
     <div className="body">
       <div className="filter">
-        <button className="filer-btn" 
-onClick={() => {
-  console.log("reslist::", restaurantList.length)
-  console.log("listOfRestaurant::", listOfRestaurant.length)
- const filtertheRestaurant = listOfRestaurant.filter((res) => { 
-  console.log("resLog::",listOfRestaurant)
-  return (  res.data.avgRating > 4)});
- console.log("filteredData::", filtertheRestaurant)
-       setListOfRestaurant(filtertheRestaurant)
-       }}
-            >
-                Top rated Restaurants
+        <div className="searchText" >
+          <input value={searchText} onChange = {
+            (e)=> {
+              setSearchText(e.target.value)
+            }
+          } />
+          <button className="searchBtn" onClick = {
+            ()=>{
+              let filterRestaurant= listOfRestaurant.filter((res)=>{
+                return res.info.name.toLowerCase().includes(searchText.toLowerCase())
+              })
+              setFiltereListdRestaurant(filterRestaurant);
+            }
+          }>Search</button>
+        </div>
+        <button
+          className="filer-btn"
+          onClick={() => {
+            const filtertheRestaurant = listOfRestaurant.filter((res) => {
+              return res.data.avgRating > 4;
+            });
+            setListOfRestaurant(filtertheRestaurant);
+          }}
+        >
+          Top rated Restaurants
         </button>
       </div>
 
       <div className="restaurant-container">
         {/* {resList.map(res=> <RestaurantCard key = {res.info.id} resData={res}/> )}  */}
-        {listOfRestaurant.map(res=> <RestaurantCard key = {res.data.id} resData={res}/> )} 
+        {/* {listOfRestaurant.map(res=> <RestaurantCard key = {res.data.id} resData={res}/> )}  */}
+        {filteredListRestaurant.map((res) => (
+          <RestaurantCard key={res.info.id} resData={res} />
+        ))}
       </div>
     </div>
   );
