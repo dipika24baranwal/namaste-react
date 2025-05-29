@@ -6,7 +6,7 @@ import {CON_URL} from "../utils/constants";
   return (
     <div className="restuarant-card">
       <img
-        className="restuarant-logo, logo"
+        className="restuarant-logo"
         src={
           CON_URL+
           cloudinaryImageId
