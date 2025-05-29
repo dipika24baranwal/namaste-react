@@ -48,4 +48,14 @@
 # React Hooks
     {Normal JS utility function}
     -useState : Superpowerful state variable of React
-    -useEffect : 
+    -useEffect : Will be called whenever component render/re-render
+        -If we don't pass any dependency array : useEffect(()=>{})
+            => useEffect will be called everytime compenent renders
+        -If we pass empty dependency array : useEffect(()=> {}, [])
+            => useEffect will be called on initial component render(just once)
+        -If we pass any value to dependency array: useEffect(()=>{}, [btnNameReact])
+            => useEffect will be called when dependecy array value changes.
+
+# Types of Routing in web application
+    -Client side routing
+    -Server side routing

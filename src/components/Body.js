@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import restaurantList from "../utils/mockData";
 import Shimmer from "./Shimmer";
+import {Link} from "react-router"
 
 let restaurantList2 = [
   {
@@ -42,7 +43,7 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://proxy.cors.sh/https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9698196&lng=77.7499721&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9698196&lng=77.7499721&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       //"https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.99740&lng=79.00110&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     ); //("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING")
 
@@ -101,7 +102,7 @@ const Body = () => {
         {/* {resList.map(res=> <RestaurantCard key = {res.info.id} resData={res}/> )}  */}
         {/* {listOfRestaurant.map(res=> <RestaurantCard key = {res.data.id} resData={res}/> )}  */}
         {filteredListRestaurant.map((res) => (
-          <RestaurantCard key={res.info.id} resData={res} />
+          <Link key={res.info.id} to = {"/restaurants/"+res.info.id}><RestaurantCard  resData={res} /></Link>
         ))}
       </div>
     </div>
