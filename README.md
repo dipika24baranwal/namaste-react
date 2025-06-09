@@ -59,3 +59,18 @@
 # Types of Routing in web application
     -Client side routing
     -Server side routing
+
+# React lifecycle
+    -Parent Constructor
+    -Parent Render
+        -Child1 Constructor
+        -Child1 Rebder
+
+        -Child2 Constructor
+        -Child2 Render
+
+        <DOM updated - in siingle Batch>
+        -Child1 ComponentDidMount
+        -Child2 ComponentDidMount
+        
+    -Parent ComponentDidMount
