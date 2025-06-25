@@ -5,27 +5,48 @@ class UserClass extends React.Component {
         super(props)
         this.state={
             count: 0,
-            count2:2
+            count2:2,
+            userInfo: {
+                name: "Dummy",
+                Location: "Default"
+            }
         }
-        console.log("Child Constructor")
+        //console.log("Child Constructor")
     }
-    ComponentDidMount() {
+    async componentDidMount() {
         console.log("Child Did mount")
+        const userData= await fetch("https://api.github.com/users/dipika24baranwal");
+        const jsonData= await userData.json();
+        console.log("user data::", jsonData);
+        this.setState({
+            userInfo: jsonData
+        })
     }
+
+    componentDidUpdate() {
+        console.log("Component did update");
+    }
+
+    componentWillUnmount(){
+        console.log("Component will unmount");
+    }
+
     render() {
-        const {name,location}= this.props
+        //const {name,location}= this.props
+        const {login,type,avatar_url}=this.state.userInfo
         const{count, count2}=this.state
-        console.log("Child Render")
+        //console.log("Child Render")
         return (
             <div className="user-card">
-            <h2>Name : {name}</h2>
+                <img src={avatar_url} />
+            <h2>Name : {login}</h2>
             <h3>Count : {count}</h3>
-            <button onClick={()=>{
+            {/* <button onClick={()=>{
                 this.setState({
                     count: this.state.count + 1
                 })
-            }}>Count Increase</button>
-            <h3>Location : {location}</h3>
+            }}>Count Increase</button> */}
+            <h3>Location : {type}</h3>
             <h3>Contact : abc@gmail.com</h3>
         </div>
         )

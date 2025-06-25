@@ -1,4 +1,4 @@
-//import User from "./User";
+import User from "./User";
 import UserClass from "./UserClass"
 import React from "react"
 
@@ -10,7 +10,7 @@ class About extends React.Component {
         console.log("Parent Constructor")
     }
 
-    ComponentDidMount() {
+    componentDidMount() {
         console.log("Parent Did mount")
     }
     render() {
@@ -20,6 +20,7 @@ class About extends React.Component {
             <h1>About Us</h1>
             <h2>This is About us page.</h2>
                 <UserClass name={"Dipika Class"} location={"Bangalore Class"}/>
+                {/* <User name="Dipika Functional Component"/> */}
             </div>
     )
     }

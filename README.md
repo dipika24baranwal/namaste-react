@@ -55,6 +55,8 @@
             => useEffect will be called on initial component render(just once)
         -If we pass any value to dependency array: useEffect(()=>{}, [btnNameReact])
             => useEffect will be called when dependecy array value changes.
+        
+        -- return statement underuseEffect is equivalent to ComponentWillUnmount: once useer go out of component this return piece of code will be called.
 
 # Types of Routing in web application
     -Client side routing
