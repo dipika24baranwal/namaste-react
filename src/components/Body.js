@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import restaurantList from "../utils/mockData";
 import Shimmer from "./Shimmer";
 import {Link} from "react-router"
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 let restaurantList2 = [
   {
@@ -62,6 +63,14 @@ const Body = () => {
         ?.restaurants
     );
   };
+
+  const onlineSatus = useOnlineStatus();
+console.log(onlineSatus)
+  if(onlineSatus === false) {
+    return (<h1>Seems like you're offline! Please check your internet connection!!!</h1>)
+  }
+
+
 
   //console.log("body render::", searchText)
 
