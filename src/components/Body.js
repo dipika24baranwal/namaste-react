@@ -78,14 +78,14 @@ console.log(onlineSatus)
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div className="searchText" >
-          <input value={searchText} onChange = {
+      <div className="flex">
+        <div className="searchText m-4 p-4" >
+          <input className="border border-solid border-black" value={searchText} onChange = {
             (e)=> {
               setSearchText(e.target.value)
             }
           } />
-          <button className="searchBtn" onClick = {
+          <button className="px-4 mx-4 bg-green-300 rounded-lg items-center" onClick = {
             ()=>{
               let filterRestaurant= listOfRestaurant.filter((res)=>{
                 return res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -94,8 +94,9 @@ console.log(onlineSatus)
             }
           }>Search</button>
         </div>
-        <button
-          className="filer-btn"
+        <div className=" m-4 p-4">
+          <button
+          className="px-4 mx-4 bg-blue-300 rounded-lg items-center"
           onClick={() => {
             const filtertheRestaurant = listOfRestaurant.filter((res) => {
               return res.data.avgRating > 4;
@@ -105,9 +106,10 @@ console.log(onlineSatus)
         >
           Top rated Restaurants
         </button>
+        </div>
       </div>
 
-      <div className="restaurant-container">
+      <div className="flex flex-wrap">
         {/* {resList.map(res=> <RestaurantCard key = {res.info.id} resData={res}/> )}  */}
         {/* {listOfRestaurant.map(res=> <RestaurantCard key = {res.data.id} resData={res}/> )}  */}
         {filteredListRestaurant.map((res) => (
