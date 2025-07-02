@@ -3,6 +3,9 @@ import {CON_URL} from "../utils/constants";
  const RestaurantCard = (props) => {
   const { name, cuisines, avgRating, sla, cloudinaryImageId, costForTwo } =
     props.resData.info;
+  
+
+
   return (
     <div className="p-4 m-4 w-[250] bg-gray-100 rounded-lg hover:bg-gray-300">
       <img
@@ -21,4 +24,19 @@ import {CON_URL} from "../utils/constants";
   );
 };
 
+export const topRatedRestaurantCard =(RestaurantCard)=>{
+  return (props)=> {
+  return (
+    <div>
+  <label className="absolute bg-black text-white m-2 p-2 rounded-lg">Top Rated</label>
+  <RestaurantCard {...props} />
+  </div>
+  )
+  }
+}
+
+
 export default RestaurantCard;
+
+
+

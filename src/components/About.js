@@ -1,6 +1,8 @@
 import User from "./User";
 import UserClass from "./UserClass"
 import React from "react"
+import UserContext from "../utils/UserContext"
+
 
 
 class About extends React.Component {
@@ -19,6 +21,11 @@ class About extends React.Component {
         <div>
             <h1>About Us</h1>
             <h2>This is About us page.</h2>
+            <div>
+                <UserContext.Consumer>
+                {({loggedinUserName}) =>(<h1 className="bold text-xl">{loggedinUserName}</h1> )}
+            </UserContext.Consumer>
+            </div>
                 <UserClass name={"Dipika Class"} location={"Bangalore Class"}/>
                 {/* <User name="Dipika Functional Component"/> */}
             </div>

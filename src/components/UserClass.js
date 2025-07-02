@@ -40,7 +40,8 @@ class UserClass extends React.Component {
             <div className="user-card">
                 <img src={avatar_url} />
             <h2>Name : {login}</h2>
-            <h3>Count : {count}</h3>
+            <h3>LoggedInUser : {count}</h3>
+            
             {/* <button onClick={()=>{
                 this.setState({
                     count: this.state.count + 1

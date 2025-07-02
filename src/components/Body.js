@@ -1,9 +1,10 @@
-import RestaurantCard from "./RestaurantCard";
-import { useState, useEffect } from "react";
+import RestaurantCard, {topRatedRestaurantCard} from "./RestaurantCard";
+import { useState, useEffect, useContext } from "react";
 import restaurantList from "../utils/mockData";
 import Shimmer from "./Shimmer";
 import {Link} from "react-router"
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext"
 
 let restaurantList2 = [
   {
@@ -42,6 +43,8 @@ const Body = () => {
     fetchData();
   }, []);
 
+  
+
   const fetchData = async () => {
     const data = await fetch(
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9698196&lng=77.7499721&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
@@ -70,10 +73,12 @@ console.log(onlineSatus)
     return (<h1>Seems like you're offline! Please check your internet connection!!!</h1>)
   }
 
+const {loggedinUserName, setUserName} = useContext(UserContext)
 
-
+console.log(
+      "ListofRestaurant::",listOfRestaurant );
   //console.log("body render::", searchText)
-
+ const TopRatedRestaurant = topRatedRestaurantCard(RestaurantCard)
   return listOfRestaurant.length === 0 ? (
     <Shimmer />
   ) : (
@@ -107,13 +112,19 @@ console.log(onlineSatus)
           Top rated Restaurants
         </button>
         </div>
+<div className=" m-4 p-4">
+         <input className="p-1 border-black border" value={loggedinUserName} onChange={(e) => setUserName(e.target.value)} />
+        </div>
+
       </div>
 
       <div className="flex flex-wrap">
         {/* {resList.map(res=> <RestaurantCard key = {res.info.id} resData={res}/> )}  */}
         {/* {listOfRestaurant.map(res=> <RestaurantCard key = {res.data.id} resData={res}/> )}  */}
         {filteredListRestaurant.map((res) => (
-          <Link key={res.info.id} to = {"/restaurants/"+res.info.id}><RestaurantCard  resData={res} /></Link>
+          <Link key={res.info.id} to = {"/restaurants/"+res.info.id}>
+            {res.info.avgRating === 4.2 ? <TopRatedRestaurant resData={res} /> : <RestaurantCard  resData={res} />}
+            </Link>
         ))}
       </div>
     </div>
