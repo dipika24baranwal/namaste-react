@@ -9,6 +9,9 @@ import Shimmer from "./components/Shimmer"
 import RestaurantMenu from "./components/RestaurantMenu";
 import {createBrowserRouter, RouterProvider, Outlet} from "react-router";
 import UserContext from "../src/utils/UserContext"
+import {Provider} from "react-redux"
+import appStore from "../src/utils/appStore"
+import Cart from "./components/Cart"
 
 
 const resObj = {
@@ -91,12 +94,14 @@ useEffect(()=>{
 }, [])
 
   return (
+    <Provider store={appStore}>
     <UserContext.Provider value={{loggedinUserName : userName, setUserName}}>
     <div className="app">
       <Header />
       <Outlet />
     </div>
     </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -125,6 +130,11 @@ const appRouter = createBrowserRouter([
     path: "grocery",
     //Component: About
     element: <Suspense fallback={<Shimmer />}><Grocery /></Suspense>
+  },
+  {
+    path: "cart",
+    //Component: Cart
+    element: <Cart />
   },
   {
     path: "restaurants/:resID",

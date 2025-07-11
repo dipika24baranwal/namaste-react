@@ -75,4 +75,12 @@
         -Child1 ComponentDidMount
         -Child2 ComponentDidMount
         
-    -Parent ComponentDidMount
+    -Parent 
+    
+# Redux Toolkit
+    - Install @reduxjs/toolkit amd react-redux
+    - Create/ Build redex store
+    - Connect stroe to our application
+    - Create Slice(CartSlice)
+    - dispatch(action)
+    - Selector
